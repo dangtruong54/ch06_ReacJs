@@ -7,23 +7,23 @@ import NotfoundPage from './page/NotfoundPage';
 
 const router = [
     {
-        patch: '/',
+        path: '/',
         exact: true,
         main: () => <HomePage />
     },
     {
-        patch: '/article/:id',
+        path: '/article/:id',
         exact: true,
         main: ({match}) => <ArticlePage match={match} />
     },
     {
-        patch: '/album/:id',
+        path: '/album/:id',
         exact: true,
         main : ({match}) => <AlbumPage match= {match} />
     },
     { 
         path: '',
-        exact: true,
+        exact: false,
         main: () => <NotfoundPage />
     },
 ]

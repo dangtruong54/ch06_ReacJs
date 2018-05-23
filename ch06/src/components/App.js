@@ -12,8 +12,10 @@ class App extends Component {
                 <div className="App container">
                     <Title />
                     <Breadcrumb />
-                    <div className="row">                        
-                        {this.showRouter(routes)}                        
+                    <div className="row">
+                    <Switch>                        
+                        {this.showRouter(routes)}
+                    </Switch>
                     </div>
                 </div>
             </Router>
@@ -21,16 +23,13 @@ class App extends Component {
     }
 
     showRouter(routes) {
-        console.log(routes);
         let xhtml = null;
         if(routes.length > 0) {
-            xhtml = routes.map((route, index) => {                
-                console.log(route.patch + 'aa');
-                
-                return <Route key={index} exact={route.exact} patch={route.patch} component={route.main} />
+            xhtml = routes.map((route, index) => {  
+                return <Route key={index} exact={route.exact} path={route.path} component={route.main} />
             })
         }
-        return <Switch>{xhtml}</Switch>;
+        return xhtml;
     }
 }
 
