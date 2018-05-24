@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import Article from './Article';
 
 class ArticleList extends Component {
@@ -10,7 +12,9 @@ class ArticleList extends Component {
         }
     }
 
-    render() {
+    render() {     
+        let {query} = this.props.query;
+   
         let xhtml = <h3>Enter Article name 's to start</h3>
         if(1 < 2){
             xhtml = <div><Article /><Article /><Article /></div>
@@ -24,4 +28,11 @@ class ArticleList extends Component {
     }
 }
 
-export default ArticleList;
+const mapStateToProps = (state) => {
+
+    return {
+        query: state.query
+    }
+}
+
+export default connect(mapStateToProps, null)(ArticleList);
