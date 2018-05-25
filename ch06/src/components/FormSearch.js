@@ -23,14 +23,15 @@ class FormSearch extends Component {
     }
 
     handleSearch = (event) => {
-        let {query} = this.state;
-        this.props.changeQuery(query);
-
+        let query = this.state.query;
+        this.props.changeQuery(query);        
         event.preventDefault();
     }
 
     handleClear = (event) => {
-
+        this.setState({
+            query: ''
+        })
         event.preventDefault();
     }
 
@@ -41,8 +42,8 @@ class FormSearch extends Component {
     // }
 
     render() {
-        let query = (this.state.query !== '') ? this.state.query : this.props.query;
-
+        let query = (this.state.query !== '') ? this.state.query : this.props.query;       
+        
         return (
             <form className="form-inline">
                 <div className="form-group">
