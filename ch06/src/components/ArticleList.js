@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import * as configs from './../constant/Configs';
+import Spotify from './../services/SpotifyApi'
 import Article from './Article';
 
 class ArticleList extends Component {
@@ -15,23 +15,16 @@ class ArticleList extends Component {
 
     searchQuery = (query) => {
         if (query !== '') {
-            let nameQuery = encodeURI(query);
-            let url = configs.BASE_URL + 'search?q=' + nameQuery + '&type=artist&market=VN&limit=10&offset=0';
-            let config = {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + configs.API_KEY
-                }
-            }
-            fetch(url, config).then(res => res.json())
-                .catch(error => console.error('Error:', error))
-                .then(response => {
-                    console.log(response.artists.items);
+                Spotify.getSpotifyApiArtist(query).catch(error => console.error('Error:', error))
+                .then(response => {          
                     this.setState({
                         articles: response.artists.items
                     })
                 });
+        }else {
+            this.setState({
+                articles: ''
+            })
         }
     }
 
@@ -40,11 +33,17 @@ class ArticleList extends Component {
     }
 
     render() {
-        let { articles } = this.state.articles;
-        
+        let { articles } = this.state;        
+        let { query } = this.props;
+
         let xhtml = <h3>Enter Article name 's to start</h3>
-        if (1 < 2) {
-            xhtml = <div><Article /><Article /><Article /></div>
+        if (articles !== null && articles.length > 0) {
+            xhtml = null;
+            xhtml = articles.map((article, index) => {
+                return <Article key={index} item={article} index={index} />
+            })
+        }else if(query !== '') {
+            xhtml = <h3>Khong co du lieu cho <strong>{query}</strong></h3>
         }
 
         return (

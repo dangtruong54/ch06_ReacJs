@@ -12,7 +12,7 @@ const router = [
         main: () => <HomePage />
     },
     {
-        path: '/article/:id',
+        path: '/artist/:id',
         exact: true,
         main: ({match}) => <ArticlePage match={match} />
     },

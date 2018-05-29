@@ -31,7 +31,9 @@ class FormSearch extends Component {
     handleClear = (event) => {
         this.setState({
             query: ''
-        })
+        })       
+        
+        this.props.changeQuery('');
         event.preventDefault();
     }
 
