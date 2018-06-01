@@ -1,3 +1,5 @@
+import queryString from 'query-string';
+
 import * as configs from './../constant/Configs';
 import axios from 'axios'
 
@@ -18,8 +20,28 @@ export default class SpotifyAxiosArtist {
     }
 
     static getSpotifyAxioAlbums(id) {
+        let argString = queryString.stringify({
+            offset: 0,
+            limit: 5
+        });
+        let url = `${configs.BASE_URL}artists/${id}/albums?${argString}`;
         
-        let url = `${configs.BASE_URL}artists/${id}/albums?limit=5`;
+        return axios(url, SpotifyAxiosArtist.config);
+    }
+
+    static getSpotifyAxioTracks(id) {
+        let argString = queryString.stringify({
+            offset: 0,
+            limit: 5
+        });
+        let url = `${configs.BASE_URL}albums/${id}/tracks?${argString}`;       
+        
+        return axios(url, SpotifyAxiosArtist.config);
+    }
+
+    static getSpotifyAxioAnAlbum(id) {
+        let url = `${configs.BASE_URL}albums/${id}`;       
+        
         return axios(url, SpotifyAxiosArtist.config);
     }
 }
