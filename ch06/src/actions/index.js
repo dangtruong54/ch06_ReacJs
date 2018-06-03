@@ -6,3 +6,13 @@ export const actChangeQuery = (query) => {
         query
     }
 }
+
+export const actGoHome = () => {
+    return {
+        type: configs.GO_HOME
+    }
+}
+
+export const actGoArtist = (name, to) => {
+
+}
