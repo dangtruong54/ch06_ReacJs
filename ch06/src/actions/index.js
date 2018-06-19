@@ -14,5 +14,13 @@ export const actGoHome = () => {
 }
 
 export const actGoArtist = (name, to) => {
+    return {
+        type: configs.GO_ARTIST
+    }
+}
 
+export const actGoAlbum = (name, to) => {
+    return {
+        type: configs.GO_ALBUM
+    }
 }

@@ -10,7 +10,9 @@ const MenuLink = ({menu}) => {
             children=
                 {
                     ({ match }) => {
-                        if(match !== null && match.exact === true) {
+                        console.log(match);
+                        
+                        if(match !== null && match.isExact === true) {
                             return <li className='active'>{menu.name}</li>
                         }else {
                             return <li><Link to={menu.to} >{menu.name}</Link></li>
@@ -36,9 +38,7 @@ class BreadCrumbs extends Component {
 }
 
 const mapStateToProps = state => {
-    return ({
-        breadcrumb: state.breadcrumb
-    })
+    return ({breadcrumb: state.breadcrumb})
 }
 
 export default connect(mapStateToProps,null )(BreadCrumbs);

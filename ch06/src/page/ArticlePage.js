@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import SpotifyAxiosArtist from './../services/SpotifyAxiosArtist';
 import Album from '../components/Album';
+import { actGoArtist } from '../actions';
 
 class ArticlePage extends Component {
 
@@ -29,6 +31,7 @@ class ArticlePage extends Component {
                     artist: response.data
                 });
             }
+            this.props.changeBreadcrumb(response.data.name, `/artist/${response.data.id}`)
         });
     }
 
@@ -121,4 +124,12 @@ class ArticlePage extends Component {
     }
 }
 
-export default ArticlePage;
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return({
+        changeBreadcrumb: (name, to) => {
+            dispatch(actGoArtist(name, to))
+        }
+    });
+}
+
+export default connect(null, mapDispatchToProps)(ArticlePage);
