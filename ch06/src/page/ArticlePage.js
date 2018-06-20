@@ -31,6 +31,7 @@ class ArticlePage extends Component {
                     artist: response.data
                 });
             }
+            
             this.props.changeBreadcrumb(response.data.name, `/artist/${response.data.id}`)
         });
     }
@@ -126,7 +127,7 @@ class ArticlePage extends Component {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return({
-        changeBreadcrumb: (name, to) => {
+        changeBreadcrumb: (name, to) => {  
             dispatch(actGoArtist(name, to))
         }
     });

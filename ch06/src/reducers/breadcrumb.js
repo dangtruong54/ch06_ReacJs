@@ -10,14 +10,15 @@ const breadcrumb = (state = defaultState, action) => {
     switch (action.type) {
 
         case types.GO_HOME:
-            return state;
+            state = defaultState;
+            return [...state];
 
         case types.GO_ALBUM:
             return state;
 
         case types.GO_ARTIST:
             state[1] = {to, name};                   
-            return state;
+            return [...state];
 
         default:
             return state;

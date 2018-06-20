@@ -10,8 +10,6 @@ const MenuLink = ({menu}) => {
             children=
                 {
                     ({ match }) => {
-                        console.log(match);
-                        
                         if(match !== null && match.isExact === true) {
                             return <li className='active'>{menu.name}</li>
                         }else {

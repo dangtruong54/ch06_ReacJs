@@ -32,6 +32,10 @@ class ArticleList extends Component {
         this.searchQuery(nextProps.query);
     }
 
+    componentWillMount(){
+        this.searchQuery(this.props.query);
+    }
+
     render() {
         let { articles } = this.state;        
         let { query } = this.props;

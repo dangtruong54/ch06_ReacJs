@@ -15,12 +15,16 @@ export const actGoHome = () => {
 
 export const actGoArtist = (name, to) => {
     return {
-        type: configs.GO_ARTIST
+        type: configs.GO_ARTIST,
+        name,
+        to
     }
 }
 
 export const actGoAlbum = (name, to) => {
     return {
-        type: configs.GO_ALBUM
+        type: configs.GO_ALBUM,
+        name,
+        to
     }
 }

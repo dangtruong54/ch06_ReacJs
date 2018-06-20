@@ -37,11 +37,11 @@ class FormSearch extends Component {
         event.preventDefault();
     }
 
-    // handleEnter = (event) => {
-
-    //     this.handleSearch(event);
-    //     event.preventDefault();
-    // }
+    handleEnter = (event) => {
+        if(event.key === 'Enter') {
+            this.handleSearch(event);
+        }
+    }
 
     render() {
         let query = (this.state.query !== '') ? this.state.query : this.props.query;       
@@ -49,8 +49,8 @@ class FormSearch extends Component {
         return (
             <form className="form-inline">
                 <div className="form-group">
-                    <input type="text" name='query' value={query} onChange={this.handleChange} className="form-control" placeholder="Enter artist name ..." />                                
-                    <button type="button" className="btn btn-danger" onClick={this.handleSearch}>Search</button>
+                    <input type="text" name='query' value={query} onKeyPress={this.handleEnter} onChange={this.handleChange} className="form-control" placeholder="Enter artist name ..." />                                
+                    <button type="button" className="btn btn-danger" onClick={this.handleSearch} >Search</button>
                     <button type="button" className="btn btn-warning" onClick={this.handleClear}>Clear</button>
                 </div>
             </form>
